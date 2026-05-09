@@ -1,35 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.EntityFrameworkCore;
+using Ntp.Domain.Entities;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Nsn.Domain.Entities;
 
-namespace Nsn.Persistance.Context
+namespace Ntp.Persistance.Context;
+
+public class AppDbContext : DbContext
 {
-    public class AppDbContext : DbContext
+    public AppDbContext()
     {
-        public AppDbContext ()
-        {
 
-        }
-        public AppDbContext(DbContextOptions options) : base(options)
-        {
+    }
 
-        }
-        DbSet<Category> Categories { get; set; }
+    public AppDbContext(DbContextOptions options) : base(options)
+    {
 
-        DbSet<Detail> Details { get; set; }
+    }
+    public DbSet<Category> Categories { get; set; }
+    public DbSet<Detail> Details { get; set; }
+    public DbSet<Product> Products { get; set; }
 
-        DbSet<Product> Products { get; set; }
+    public DbSet<ProductCategory> ProductCategories { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-        }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
 }
-    
