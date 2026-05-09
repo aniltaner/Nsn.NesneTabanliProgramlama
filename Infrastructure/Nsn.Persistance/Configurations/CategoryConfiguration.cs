@@ -1,55 +1,59 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Nsn.Domain.Entities;
+using Ntp.Domain.Entities;
 
-namespace Nsn.Persistance.Configurations
+namespace Ntp.Persistance.Configurations;
+
+public class CategoryConfiguration : IEntityTypeConfiguration<Category>
 {
-    public class CategoryConfiguration : IEntityTypeConfiguration<Category>
+    public void Configure(EntityTypeBuilder<Category> builder)
     {
-        public void Configure(EntityTypeBuilder<Category> builder)
+        Random rnd = new Random();
+        Category c1 = new()
         {
-            builder.HasData(
-                new Category
-                {
-                    Id = 1,
-                    Name = "Yemekler",
-                    SubCategoryId = 0,
-                    Sort = 1
-                },
-                new Category
-                {
-                    Id = 2,
-                    Name = "İçecekler",
-                    SubCategoryId = 0,
-                    Sort = 2
-                },
-                new Category
-                {
-                    Id = 3,
-                    Name = "Tatlılar",
-                    SubCategoryId = 0,
-                    Sort = 3
-                },
-                new Category
-                {
-                    Id = 4,
-                    Name = "Pizzalar",
-                    SubCategoryId = 1,
-                    Sort = 1
-                },
-                new Category
-                {
-                    Id = 5,
-                    Name = "Burgerler",
-                    SubCategoryId = 1,
-                    Sort = 2
-                }
-            );
-        }
+            Id = 1,
+            Name = "Elektronik",
+            SubCategoryId = 0,
+            Sort = 1,
+            IsDeleted = false,
+        };
+
+        Category c2 = new()
+        {
+            Id = 2,
+            Name = "Moda",
+            SubCategoryId = 0,
+            Sort = 2,
+            IsDeleted = false,
+        };
+
+        Category c3 = new()
+        {
+            Id = 3,
+            Name = "Oto, Bahçe, Yapı Merket",
+            SubCategoryId = 0,
+            Sort = 3,
+            IsDeleted = false,
+        };
+
+        Category c4 = new()
+        {
+            Id = 4,
+            Name = "Bilgisayar ve Tablet",
+            SubCategoryId = 1,
+            Sort = 1,
+            IsDeleted = false,
+        };
+
+        Category c5 = new()
+        {
+            Id = 5,
+            Name = "Beyaz Eşye",
+            SubCategoryId = 1,
+            Sort = 2,
+            IsDeleted = false,
+        };
+
+        builder.HasData(c1, c2, c3, c4, c5);
     }
 }
